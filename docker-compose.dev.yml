@@ -2,12 +2,14 @@ version: "3.9"
 
 services:
   backend:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     image: golang:latest
     user: root
     working_dir: /app
     volumes:
-      - ./:/app
+      - ./backend:/app
     container_name: telzir_backend
     tty: true
     stdin_open: true
@@ -36,7 +38,7 @@ services:
       interval: 10s
       retries: 10
     volumes:
-      - ./db/migrations/000001_dddcost.up.sql:/docker-entrypoint-initdb.d/000001_dddcost.up.sql
+      - ./backend/db/migrations/000001_dddcost.up.sql:/docker-entrypoint-initdb.d/000001_dddcost.up.sql
     networks:
       - dev
 networks:
