@@ -11,6 +11,7 @@ import (
 // IDDDCostRepository presents the interface for the dddcost repository
 type IDDDCostRepository interface {
 	GetAllDDDCodes(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError)
+	GetAllDDDCosts(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError)
 	GetByOriginDestination(ctx context.Context, origin, destination string) (*entity.DDDCost, *customerror.CustomError)
 }
 
