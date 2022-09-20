@@ -1,14 +1,14 @@
 version: "3.9"
 
 services:
-  golang:
+  backend:
     build: .
-    image: golang
+    image: golang:latest
     user: root
     working_dir: /app
     volumes:
       - ./:/app
-    container_name: backend_test
+    container_name: telzir_backend_test
     tty: true
     stdin_open: true
     command: bash
@@ -22,7 +22,7 @@ services:
     networks:
       - test
   db:
-    container_name: db_test
+    container_name: telzir_db_test
     image: postgres
     platform: linux/x86_64
     restart: always
@@ -36,7 +36,7 @@ services:
       interval: 10s
       retries: 10
     volumes:
-      - ./db/migrations/funcionarios.up.test.sql:/docker-entrypoint-initdb.d/funcionarios.up.test.sql
+      - ./db/migrations/dddcost.up_test.sql:/docker-entrypoint-initdb.d/dddcost.up_test.sql
     networks:
       - test
 networks:
