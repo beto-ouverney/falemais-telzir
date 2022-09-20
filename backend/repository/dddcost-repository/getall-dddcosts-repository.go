@@ -9,7 +9,7 @@ import (
 // GetAllDDDCodes gets all codes available in the database
 func (r *dDDCostRepository) GetAllDDDCosts(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError) {
 	var dddcosts []entity.DDDCost
-	err := r.sqlx.SelectContext(ctx, &dddcosts, "SELECT * FROM dddcost")
+	err := r.sqlx.SelectContext(ctx, &dddcosts, "SELECT * FROM dddcost ORDER BY origin ASC")
 	if err != nil {
 		return nil, customerror.NewError(customerror.EINTERNAL, "Internal error", "dddcost_repository.GetAllDDDCosts", err, nil)
 	}

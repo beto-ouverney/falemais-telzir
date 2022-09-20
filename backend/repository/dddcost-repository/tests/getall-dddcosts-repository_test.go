@@ -21,7 +21,7 @@ func Test_dDDCostRepository_GetAllDDDCosts(t *testing.T) {
 		msg1     string
 	}{
 		{
-			describe: "Should be able return a list of dddcosts without a error",
+			describe: "Should be able return a list of dddcosts in order by origin without a error",
 			want: &[]entity.DDDCost{
 				{
 					ID:          1,
