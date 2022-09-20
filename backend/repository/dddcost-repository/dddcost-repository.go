@@ -10,7 +10,8 @@ import (
 
 // IDDDCostRepository presents the interface for the dddcost repository
 type IDDDCostRepository interface {
-	GetAll(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError)
+	GetAllDDDCodes(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError)
+	GetByOriginDestination(ctx context.Context, origin, destination string) (*entity.DDDCost, *customerror.CustomError)
 }
 
 type dDDCostRepository struct {
