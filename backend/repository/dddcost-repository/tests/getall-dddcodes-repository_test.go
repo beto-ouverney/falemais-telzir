@@ -35,8 +35,8 @@ func Test_dDDCostRepository_GetAllDDDCodes(t *testing.T) {
 				},
 			},
 			want1: nil,
-			msg:   "Should be able return a list of dddcosts without a error",
-			msg1:  "Should be able return a list of dddcosts without a cost fields",
+			msg:   "Should be able return a list of dddcosts without a cost fields",
+			msg1:  "Should be able return a list of dddcosts without a error",
 		},
 	}
 	for _, tt := range tests {
