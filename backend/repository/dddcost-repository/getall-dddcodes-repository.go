@@ -6,9 +6,10 @@ import (
 	"github.com/beto-ouverney/falemais-telzir/entity"
 )
 
-func (r *dDDCostRepository) GetAll(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError) {
+// GetAllDDDCodes gets all codes available in the database
+func (r *dDDCostRepository) GetAllDDDCodes(ctx context.Context) (*[]entity.DDDCost, *customerror.CustomError) {
 	var dddcosts []entity.DDDCost
-	err := r.sqlx.SelectContext(ctx, &dddcosts, "SELECT * FROM dddcost")
+	err := r.sqlx.SelectContext(ctx, &dddcosts, "SELECT origin, destination FROM dddcost")
 	if err != nil {
 		return nil, customerror.NewError(customerror.EINTERNAL, "Internal error", "dddcost_repository.GetAll", err, nil)
 	}

@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-func Test_dDDCostRepository_GetAll(t *testing.T) {
+func Test_dDDCostRepository_GetAllDDDCodes(t *testing.T) {
 	assertions := assert.New(t)
 
 	tests := []struct {
@@ -21,30 +21,31 @@ func Test_dDDCostRepository_GetAll(t *testing.T) {
 		msg1     string
 	}{
 		{
-			describe: "Should be able return a list of dddcosts without a error",
+			describe: "Should be able return a list of dddcosts without a error and cost fields",
 			want: &[]entity.DDDCost{
 				{
 					ID:          1,
 					Origin:      11,
 					Destination: 16,
-					Cost:        1.90,
 				},
 				{
 					ID:          2,
 					Origin:      16,
 					Destination: 11,
-					Cost:        2.90,
 				},
 			},
+			want1: nil,
+			msg:   "Should be able return a list of dddcosts without a error",
+			msg1:  "Should be able return a list of dddcosts without a cost fields",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.describe, func(t *testing.T) {
 			ctx := context.Background()
 			m := new(mocks.IDDDCostRepository)
-			m.On("GetAll", mock.AnythingOfType("*context.emptyCtx")).Return(tt.want, tt.want1)
+			m.On("GetAllDDDCodes", mock.AnythingOfType("*context.emptyCtx")).Return(tt.want, tt.want1)
 
-			got, got1 := m.GetAll(ctx)
+			got, got1 := m.GetAllDDDCodes(ctx)
 			assertions.Equal(tt.want, got, tt.msg)
 			assertions.Equal(tt.want1, got1, tt.msg1)
 		})
