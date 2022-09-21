@@ -143,7 +143,7 @@ func Test_validateFields(t *testing.T) {
 				min:         &min20,
 			},
 			want: customerror.NewError(customerror.ECONFLICT, "Origin is required",
-				"dddcost_usecase.GetCostByOriginDestination", errors.New("origin is required"), nil),
+				"dddcost_usecase.GetCostByOriginDestination", errors.New("origin is required")),
 			msg: "Must be equal",
 		},
 		{
@@ -154,7 +154,7 @@ func Test_validateFields(t *testing.T) {
 				min:         &min20,
 			},
 			want: customerror.NewError(customerror.ECONFLICT, "Origin must be greater than 10",
-				"dddcost_usecase.GetCostByOriginDestination", errors.New("origin must be greater than 10"), nil),
+				"dddcost_usecase.GetCostByOriginDestination", errors.New("origin must be greater than 10")),
 			msg: "Must be equal",
 		},
 		{
@@ -165,7 +165,7 @@ func Test_validateFields(t *testing.T) {
 				min:         &min20,
 			},
 			want: customerror.NewError(customerror.ECONFLICT, "Destination is required",
-				"dddcost_usecase.GetCostByOriginDestination", errors.New("destination is required"), nil),
+				"dddcost_usecase.GetCostByOriginDestination", errors.New("destination is required")),
 			msg: "Must be equal",
 		},
 		{
@@ -176,7 +176,7 @@ func Test_validateFields(t *testing.T) {
 				min:         &min20,
 			},
 			want: customerror.NewError(customerror.ECONFLICT, "Destination must be greater than 10",
-				"dddcost_usecase.GetCostByOriginDestination", errors.New("destination must be greater than 10"), nil),
+				"dddcost_usecase.GetCostByOriginDestination", errors.New("destination must be greater than 10")),
 			msg: "Must be equal",
 		},
 		{
@@ -187,7 +187,7 @@ func Test_validateFields(t *testing.T) {
 				min:         nil,
 			},
 			want: customerror.NewError(customerror.ECONFLICT, "Minutes is required",
-				"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes is required"), nil),
+				"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes is required")),
 			msg: "Must be equal",
 		},
 		{
@@ -198,7 +198,7 @@ func Test_validateFields(t *testing.T) {
 				min:         &min0,
 			},
 			want: customerror.NewError(customerror.ECONFLICT, "Minutes must be greater than 0",
-				"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0"), nil),
+				"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0")),
 			msg: "Must be equal",
 		},
 	}

@@ -22,7 +22,7 @@ func (e *CustomError) Error() string {
 	return fmt.Sprintf("%v", e.Err)
 }
 
-func NewError(code, message, op string, err error, detail []byte) *CustomError {
+func NewError(code, message, op string, err error) *CustomError {
 	return &CustomError{
 		Code:    code,
 		Message: message,

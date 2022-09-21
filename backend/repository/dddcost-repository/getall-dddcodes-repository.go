@@ -11,7 +11,7 @@ func (r *dDDCostRepository) GetAllDDDCodes(ctx context.Context) (*[]entity.DDDCo
 	var dddcosts []entity.DDDCost
 	err := r.sqlx.SelectContext(ctx, &dddcosts, "SELECT origin, destination FROM dddcost ORDER BY origin ASC")
 	if err != nil {
-		return nil, customerror.NewError(customerror.EINVALID, "Internal error", "dddcost_repository.GetAll", err, nil)
+		return nil, customerror.NewError(customerror.EINVALID, "Internal error", "dddcost_repository.GetAll", err)
 	}
 	return &dddcosts, nil
 }

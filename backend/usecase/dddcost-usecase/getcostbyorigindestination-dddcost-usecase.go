@@ -13,30 +13,30 @@ import (
 func validateFields(origin, destination, min *int) *customerror.CustomError {
 	if origin == nil {
 		return customerror.NewError(customerror.ECONFLICT, "Origin is required",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin is required"), nil)
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin is required"))
 	}
 	if *origin < 10 {
 		return customerror.NewError(customerror.ECONFLICT, "Origin must be greater than 10",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin must be greater than 10"), nil)
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin must be greater than 10"))
 	}
 	if destination == nil {
 		return customerror.NewError(customerror.ECONFLICT, "Destination is required",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("destination is required"), nil)
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("destination is required"))
 	}
 
 	if *destination < 10 {
 		return customerror.NewError(customerror.ECONFLICT, "Destination must be greater than 10",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("destination must be greater than 10"), nil)
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("destination must be greater than 10"))
 	}
 
 	if min == nil {
 		return customerror.NewError(customerror.ECONFLICT, "Minutes is required",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes is required"), nil)
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes is required"))
 	}
 
 	if *min <= 0 {
 		return customerror.NewError(customerror.ECONFLICT, "Minutes must be greater than 0",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0"), nil)
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0"))
 	}
 	return nil
 }
