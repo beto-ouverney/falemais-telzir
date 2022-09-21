@@ -11,7 +11,7 @@ func (r *dDDCostRepository) GetByOriginDestination(ctx context.Context, origin, 
 	var dddcost entity.DDDCost
 	err := r.sqlx.GetContext(ctx, &dddcost, "SELECT origin, destination, cost FROM dddcost WHERE origin = ? AND destination = ?", origin, destination)
 	if err != nil {
-		return nil, customerror.NewError(customerror.EINTERNAL, "Internal error", "dddcost_repository.GetByOriginDestination", err, nil)
+		return nil, customerror.NewError(customerror.EINVALID, "Internal error", "dddcost_repository.GetByOriginDestination", err, nil)
 	}
 	return &dddcost, nil
 }
