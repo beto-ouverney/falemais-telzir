@@ -14,8 +14,8 @@ func Test_dDDCostRepository_GetByOriginDestination(t *testing.T) {
 	assertions := assert.New(t)
 
 	type args struct {
-		origin      string
-		destination string
+		origin      int
+		destination int
 	}
 
 	tests := []struct {
@@ -29,8 +29,8 @@ func Test_dDDCostRepository_GetByOriginDestination(t *testing.T) {
 		{
 			describe: "Should be able return a dddcosts without a error",
 			args: args{
-				origin:      "11",
-				destination: "16",
+				origin:      11,
+				destination: 16,
 			},
 			want: &entity.DDDCost{
 				ID:          1,
@@ -49,7 +49,7 @@ func Test_dDDCostRepository_GetByOriginDestination(t *testing.T) {
 			m := new(mocks.IDDDCostRepository)
 			m.On("GetByOriginDestination", mock.AnythingOfType("*context.emptyCtx"), tt.args.origin, tt.args.destination).Return(tt.want, tt.want1)
 
-			got, got1 := m.GetByOriginDestination(ctx, tt.args.origin, tt.args.destination)
+			got, got1 := m.GetByOriginDestination(ctx, &tt.args.origin, &tt.args.destination)
 			assertions.Equal(tt.want, got, tt.msg)
 			assertions.Equal(tt.want1, got1, tt.msg1)
 		})
