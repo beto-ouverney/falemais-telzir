@@ -5,6 +5,7 @@ import (
 	"github.com/beto-ouverney/falemais-telzir/customerror"
 	"github.com/beto-ouverney/falemais-telzir/entity"
 	"github.com/stretchr/testify/assert"
+	"sync"
 	"testing"
 )
 
@@ -107,7 +108,10 @@ func Test_calculateCost(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.describe, func(t *testing.T) {
-			calculateCost(tt.args.planComparation, tt.args.planName, tt.args.freeMinutes, tt.args.costByMinute)
+			wg := sync.WaitGroup{}
+			wg.Add(1)
+			go calculateCost(tt.args.planComparation, tt.args.planName, tt.args.freeMinutes, tt.args.costByMinute, &wg)
+			wg.Wait()
 			assertions.Equal(tt.want, tt.args.planComparation, tt.msg)
 		})
 	}

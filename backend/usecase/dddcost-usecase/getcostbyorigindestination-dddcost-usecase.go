@@ -11,17 +11,20 @@ import (
 
 // validateFields validates the fields
 func validateFields(origin, destination, min *int) *customerror.CustomError {
+
 	if origin == nil {
-		return customerror.NewError(customerror.ECONFLICT, "Origin is required",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin is required"))
+		return customerror.NewError(customerror.ECONFLICT, "Origin must be greater than 10",
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin must be greater than 10"))
 	}
+
 	if *origin < 10 {
 		return customerror.NewError(customerror.ECONFLICT, "Origin must be greater than 10",
 			"dddcost_usecase.GetCostByOriginDestination", errors.New("origin must be greater than 10"))
 	}
+
 	if destination == nil {
-		return customerror.NewError(customerror.ECONFLICT, "Destination is required",
-			"dddcost_usecase.GetCostByOriginDestination", errors.New("destination is required"))
+		return customerror.NewError(customerror.ECONFLICT, "Destination must be greater than 10",
+			"dddcost_usecase.GetCostByOriginDestination", errors.New("destination must be greater than 10"))
 	}
 
 	if *destination < 10 {
@@ -33,7 +36,6 @@ func validateFields(origin, destination, min *int) *customerror.CustomError {
 		return customerror.NewError(customerror.ECONFLICT, "Minutes is required",
 			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes is required"))
 	}
-
 	if *min <= 0 {
 		return customerror.NewError(customerror.ECONFLICT, "Minutes must be greater than 0",
 			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0"))
@@ -48,7 +50,8 @@ func roundFloat(val float64, precision uint) float64 {
 }
 
 // calculateCost calculates the cost of a call by minutes by plan
-func calculateCost(planComparation *entity.PlanComparation, planName string, freeMinutes int, costByMinute float64) {
+func calculateCost(planComparation *entity.PlanComparation, planName string, freeMinutes int, costByMinute float64, wg *sync.WaitGroup) {
+	defer wg.Done()
 	plan := entity.Plan{}
 	plan.Name = planName
 	plan.With = 0
@@ -82,9 +85,9 @@ func (u *dDDCostUseCase) GetCostByOriginDestination(ctx context.Context, origin,
 	wg := sync.WaitGroup{}
 	wg.Add(3)
 
-	go calculateCost(&plansComparations, "FaleMais 30", 30, dddcost.Cost)
-	go calculateCost(&plansComparations, "FaleMais 60", 60, dddcost.Cost)
-	go calculateCost(&plansComparations, "FaleMais 120", 120, dddcost.Cost)
+	go calculateCost(&plansComparations, "FaleMais 30", 30, dddcost.Cost, &wg)
+	go calculateCost(&plansComparations, "FaleMais 60", 60, dddcost.Cost, &wg)
+	go calculateCost(&plansComparations, "FaleMais 120", 120, dddcost.Cost, &wg)
 	wg.Wait()
 
 	return &plansComparations, nil
