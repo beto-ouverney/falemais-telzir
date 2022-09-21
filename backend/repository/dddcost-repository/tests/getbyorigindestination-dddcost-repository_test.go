@@ -47,7 +47,7 @@ func Test_dDDCostRepository_GetByOriginDestination(t *testing.T) {
 		t.Run(tt.describe, func(t *testing.T) {
 			ctx := context.Background()
 			m := new(mocks.IDDDCostRepository)
-			m.On("GetByOriginDestination", mock.AnythingOfType("*context.emptyCtx"), tt.args.origin, tt.args.destination).Return(tt.want, tt.want1)
+			m.On("GetByOriginDestination", mock.AnythingOfType("*context.emptyCtx"), &tt.args.origin, &tt.args.destination).Return(tt.want, tt.want1)
 
 			got, got1 := m.GetByOriginDestination(ctx, &tt.args.origin, &tt.args.destination)
 			assertions.Equal(tt.want, got, tt.msg)
