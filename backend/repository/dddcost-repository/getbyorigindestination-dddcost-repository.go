@@ -7,7 +7,7 @@ import (
 )
 
 // GetByOriginDestination gets the cost of a call by origin and destination
-func (r *dDDCostRepository) GetByOriginDestination(ctx context.Context, origin, destination int) (*entity.DDDCost, *customerror.CustomError) {
+func (r *dDDCostRepository) GetByOriginDestination(ctx context.Context, origin, destination *int) (*entity.DDDCost, *customerror.CustomError) {
 	var dddcost entity.DDDCost
 	err := r.sqlx.GetContext(ctx, &dddcost, "SELECT origin, destination, cost FROM dddcost WHERE origin = ? AND destination = ?", origin, destination)
 	if err != nil {

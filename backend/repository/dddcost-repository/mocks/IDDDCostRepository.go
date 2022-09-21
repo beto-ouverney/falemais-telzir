@@ -68,11 +68,11 @@ func (_m *IDDDCostRepository) GetAllDDDCosts(ctx context.Context) (*[]entity.DDD
 }
 
 // GetByOriginDestination provides a mock function with given fields: ctx, origin, destination
-func (_m *IDDDCostRepository) GetByOriginDestination(ctx context.Context, origin string, destination string) (*entity.DDDCost, *customerror.CustomError) {
+func (_m *IDDDCostRepository) GetByOriginDestination(ctx context.Context, origin *int, destination *int) (*entity.DDDCost, *customerror.CustomError) {
 	ret := _m.Called(ctx, origin, destination)
 
 	var r0 *entity.DDDCost
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) *entity.DDDCost); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *int, *int) *entity.DDDCost); ok {
 		r0 = rf(ctx, origin, destination)
 	} else {
 		if ret.Get(0) != nil {
@@ -81,7 +81,7 @@ func (_m *IDDDCostRepository) GetByOriginDestination(ctx context.Context, origin
 	}
 
 	var r1 *customerror.CustomError
-	if rf, ok := ret.Get(1).(func(context.Context, string, string) *customerror.CustomError); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *int, *int) *customerror.CustomError); ok {
 		r1 = rf(ctx, origin, destination)
 	} else {
 		if ret.Get(1) != nil {
