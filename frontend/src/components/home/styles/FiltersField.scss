@@ -1,0 +1,67 @@
+$padding: 20px;
+$yellow: #fab700;
+$blue: #0d5b8f;
+$white: white;
+
+.div-filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.filter {
+  align-items: center;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: $padding;
+
+  button {
+    background: #0d5b8f;
+    background-image: -webkit-linear-gradient(top, #0d5b8f, #7ea3ba);
+    background-image: -moz-linear-gradient(top, #0d5b8f, #7ea3ba);
+    background-image: -ms-linear-gradient(top, #0d5b8f, #7ea3ba);
+    background-image: -o-linear-gradient(top, #0d5b8f, #7ea3ba);
+    background-image: linear-gradient(to bottom, #0d5b8f, #7ea3ba);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #1f628d 0px;
+    text-decoration: none;
+  }
+
+  button:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+  }
+
+}
+
+input {
+  background-color: $white;
+  color: black;
+}
+
+label {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+select {
+  background-color: $white;
+  color: black;
+  font-size: 15px;
+}
