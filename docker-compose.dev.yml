@@ -1,6 +1,18 @@
 version: "3.9"
 
 services:
+  frontend:
+    container_name: telzir_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+      - db
+    ports:
+      - 8081:8081
+    volumes:
+      - ./frontend:/app
   backend:
     build:
       context: ./backend
