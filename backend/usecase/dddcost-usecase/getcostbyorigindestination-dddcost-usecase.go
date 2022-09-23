@@ -40,6 +40,10 @@ func validateFields(origin, destination, min *int) *customerror.CustomError {
 		return customerror.NewError(customerror.ECONFLICT, "Minutes must be greater than 0",
 			"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0"))
 	}
+	if *origin == *destination {
+	  return customerror.NewError(customerror.ECONFLICT, "Origin and destination must be different",
+	  "dddcost_usecase.GetCostByOriginDestination", errors.New("origin and destination must be different"))
+	}
 	return nil
 }
 

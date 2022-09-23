@@ -205,6 +205,25 @@ func Test_validateFields(t *testing.T) {
 				"dddcost_usecase.GetCostByOriginDestination", errors.New("minutes must be greater than 0")),
 			msg: "Must be equal",
 		},
+		{
+		  describe: "Should be able return a error if origin and destination are equal",
+		  args: args{
+            origin:      &origin11,
+            destination: &origin11,
+            min:         &min20,
+          },
+          want: customerror.NewError(customerror.ECONFLICT, "Origin and destination must be different",
+            "dddcost_usecase.GetCostByOriginDestination", errors.New("origin and destination must be different")),
+          msg: "Must be equal",
+        },
+    }
+    for _, tt := range tests {
+        t.Run(tt.describe, func(t *testing.T) {
+            err := validateFields(tt.args.origin, tt.args.destination, tt.args.min)
+            assertions.Equal(tt.want, err, tt.msg)
+        })
+    }
+}
 	}
 	for _, tt := range tests {
 		t.Run(tt.describe, func(t *testing.T) {
