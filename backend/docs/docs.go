@@ -9,7 +9,7 @@ const docTemplate = `{
   "info" : {
     "version" : "1.0.0",
     "title" : "FaleMais Telzir API",
-    "description" : "Api para clientes telzir calcular e comparar os custos dos planos Falemais"
+    "description" : "Api para clientes Telzir calcular e comparar os custos dos planos Falemais"
   },
   "schemes" : [ "http" ],
   "host" : "localhost:8080",
@@ -17,10 +17,10 @@ const docTemplate = `{
   "paths" : {
     "/dddcost" : {
       "get" : {
-        "description" : "Retorna a lista com todos os DDDs de origim e destino disponíveis",
+        "description" : "Retorna a lista com todos os DDDs de origem e destino disponíveis",
         "responses" : {
           "200" : {
-            "description" : "Sucesso! Retornou a lista com todos os DDDs de origim e destino disponíveis",
+            "description" : "Sucesso! Retornou a lista com todos os DDDs de origem e destino disponíveis",
             "schema" : {
               "type" : "array",
               "items" : {
