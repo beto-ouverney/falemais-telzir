@@ -25,9 +25,9 @@ func GetCost(w http.ResponseWriter, r *http.Request) {
 	status := http.StatusOK
 
 	var jsonBody struct {
-		Origin      int `json:"origin"`
-		Destination int `json:"destination"`
-		Minutes     int `json:"minutes"`
+		Origin      int `json:"origin,omitempty"`
+		Destination int `json:"destination,omitempty"`
+		Minutes     int `json:"minutes,omitempty"`
 	}
 
 	errJ := json.NewDecoder(r.Body).Decode(&jsonBody)
@@ -37,9 +37,11 @@ func GetCost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cost, err := dddcostcontroller.New().GetCostByOriginDestination(r.Context(), &jsonBody.Origin, &jsonBody.Destination, &jsonBody.Minutes)
-	response = *cost
+
 	if err != nil {
 		response, status = errorHandler(err)
+	} else {
+		response = *cost
 	}
 
 	w.WriteHeader(status)
