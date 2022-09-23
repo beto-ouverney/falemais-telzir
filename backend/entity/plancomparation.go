@@ -1,6 +1,7 @@
 package entity
 
 // Plan is the entity for the plan
+// swagger:entity Plan
 type Plan struct {
 	Name    string  `json:"name"`
 	With    float64 `json:"with"`
@@ -8,6 +9,7 @@ type Plan struct {
 }
 
 // PlanComparation is the entity for the plan comparation
+// swagger:entity PlanComparation
 type PlanComparation struct {
 	Origin      int    `json:"origin"`
 	Destination int    `json:"destination"`

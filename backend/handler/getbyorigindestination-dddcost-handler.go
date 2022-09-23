@@ -8,6 +8,16 @@ import (
 )
 
 // GetCost is the handler for the route /dddcost/planscost, return a plans cost comparations
+// @Summary      Show plans cost comparations
+// @Description  get plan cost comparations by origin and destination DDD
+// @Tags         plancost
+// @Accept       json
+// @Produce      json
+// @Param        origin   path      int  true  "Account ID"
+// @Success      200
+// @Failure      400
+// @Failure      404
+// @Failure      500
 func GetCost(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
