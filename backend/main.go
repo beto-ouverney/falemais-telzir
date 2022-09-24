@@ -5,6 +5,7 @@ import (
 	"github.com/beto-ouverney/falemais-telzir/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/joho/godotenv"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"log"
 	"net/http"
@@ -37,10 +38,14 @@ func main() {
 	})
 
 	router.Mount("/api/v1/dddcost/swagger", httpSwagger.WrapHandler)
-
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	port := os.Getenv("PORT")
-	log.Println("Server running on port " + port)
-	err := http.ListenAndServe(port, router)
+
+	log.Println("Server running on port: ", port)
+	err = http.ListenAndServe(port, router)
 	if err != nil {
 		log.Printf("Failed to launch api server:%+v\n", err)
 	}
