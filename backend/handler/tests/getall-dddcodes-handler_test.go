@@ -1,8 +1,9 @@
-package handler
+package handler_test
 
 import (
 	"encoding/json"
 	"github.com/beto-ouverney/falemais-telzir/entity"
+	"github.com/beto-ouverney/falemais-telzir/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/stretchr/testify/assert"
@@ -28,10 +29,6 @@ func TestGetAllDDDCodes(t *testing.T) {
 	} else {
 		t.Skip("Skipping test because it is not a test environment, the port number is not 6306")
 	}
-	type args struct {
-		w http.ResponseWriter
-		r *http.Request
-	}
 
 	router := chi.NewRouter()
 
@@ -39,8 +36,8 @@ func TestGetAllDDDCodes(t *testing.T) {
 	router.Use(middleware.Recoverer)
 
 	router.Route("/api/v1/dddcost", func(r chi.Router) {
-		r.Get("/", GetAllDDDCodes)
-		r.Get("/planscost", GetCost)
+		r.Get("/", handler.GetAllDDDCodes)
+		r.Get("/planscost", handler.GetCost)
 	})
 
 	tests := []struct {

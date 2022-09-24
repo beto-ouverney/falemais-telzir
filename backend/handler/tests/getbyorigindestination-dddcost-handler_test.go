@@ -1,9 +1,10 @@
-package handler
+package handler_test
 
 import (
 	"bytes"
 	"encoding/json"
 	"github.com/beto-ouverney/falemais-telzir/entity"
+	"github.com/beto-ouverney/falemais-telzir/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/stretchr/testify/assert"
@@ -35,8 +36,8 @@ func TestGetCost(t *testing.T) {
 	router.Use(middleware.Recoverer)
 
 	router.Route("/api/v1/dddcost", func(r chi.Router) {
-		r.Get("/", GetAllDDDCodes)
-		r.Post("/", GetCost)
+		r.Get("/", handler.GetAllDDDCodes)
+		r.Post("/", handler.GetCost)
 	})
 
 	jsonBodyMock := struct {

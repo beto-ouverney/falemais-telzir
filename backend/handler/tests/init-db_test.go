@@ -1,4 +1,4 @@
-package handler
+package handler_test
 
 import (
 	"github.com/beto-ouverney/falemais-telzir/entity"
