@@ -51,6 +51,10 @@ services:
       retries: 10
     volumes:
       - ./backend/db/migrations/000001_dddcost.up.sql:/docker-entrypoint-initdb.d/000001_dddcost.up.sql
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: telzir_db
     networks:
       - dev
 networks:
