@@ -3,7 +3,7 @@
 É uma API que calcula e compara os valores de uma ligação telefônica entre regiões diferentes 
 com base em planos de tarifas pré-definidos.
 
-## Table of contents
+## Conteúdos
 
 - [Visão Geral do Projeto](#general-view)
     - [O Desafio](#o-desafio)
@@ -13,7 +13,7 @@ com base em planos de tarifas pré-definidos.
 - [Uso](#usage)
 - [Author](#author)
 
-## General view
+## Visão geral
 
 ### O desafio
 
