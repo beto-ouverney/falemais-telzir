@@ -16,11 +16,11 @@ import (
 
 func TestGetAllDDDCodes(t *testing.T) {
 	assertions := assert.New(t)
-
+	const DATABASE_URL = "postgres://root:password@telzir_db_test:5432/telzir_db_test?sslmode=disable"
 	t.Setenv("POSTGRES_USER", "root")
 	t.Setenv("POSTGRES_PASSWORD", "password")
 	t.Setenv("POSTGRES_DB", "telzir_db_test")
-	t.Setenv("DB_CONNECTION", "user=root password=password dbname=telzir_db_test sslmode=disable")
+	t.Setenv("DB_CONNECTION", "postgres://root:password@telzir_db_test:5432/telzir_db_test?sslmode=disable")
 
 	// initialize the database if in the test environment
 	if strings.Contains(os.Getenv("POSTGRES_DB"), "test") {
@@ -67,6 +67,8 @@ func TestGetAllDDDCodes(t *testing.T) {
 			if err != nil {
 				t.Errorf("Error unmarshalling response: %v", err)
 			}
+			t.Log(actual)
+			t.Log(tt.expectedMessage)
 			assertions.Equal(tt.expectedMessage, actual, tt.msg1)
 		})
 	}

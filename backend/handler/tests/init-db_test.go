@@ -49,12 +49,14 @@ var schemasInit = [7]string{
 	`INSERT INTO dddcost (origin, destination, cost) VALUES (18, 11, 1.90);`,
 }
 
+// DB_CONNECTION=postgres://root:password@telzir_db_test:5432/telzir_db_test?sslmode=disable
 const POSTGREES_CONNECTION = "user=root password=password dbname=telzir_db_test sslmode=disable"
+const DATABASE_URL = "postgres://root:password@telzir_db_test:5432/telzir_db_test?sslmode=disable"
 
 func initDBTest(t *testing.T) {
 	t.Log("Initializing database test")
-
-	conn, err := sqlx.Open("postgres", POSTGREES_CONNECTION)
+	t.Log(POSTGREES_CONNECTION)
+	conn, err := sqlx.Open("postgres", DATABASE_URL)
 
 	if err != nil {
 		t.Fatal(err.Error())

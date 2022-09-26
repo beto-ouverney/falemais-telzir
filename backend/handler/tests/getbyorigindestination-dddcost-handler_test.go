@@ -20,8 +20,8 @@ func TestGetCost(t *testing.T) {
 	t.Setenv("POSTGRES_USER", "root")
 	t.Setenv("POSTGRES_PASSWORD", "password")
 	t.Setenv("POSTGRES_DB", "telzir_db_test")
-	t.Setenv("DB_CONNECTION", "user=root password=password dbname=telzir_db_test sslmode=disable")
-
+	t.Setenv("DB_CONNECTION", "postgres://root:password@telzir_db_test:5432/telzir_db_test?sslmode=disable")
+	t.Log(os.Getenv("DB_CONNECTION"))
 	// initialize the database if in the test environment
 	if strings.Contains(os.Getenv("POSTGRES_DB"), "test") {
 		t.Log("Initializing the database for testing")
@@ -105,6 +105,7 @@ func TestGetCost(t *testing.T) {
 			if err != nil {
 				t.Errorf("Error unmarshalling response: %v", err)
 			}
+			t.Log(actual)
 			assertions.EqualValues(tt.expectedBody.Origin, actual.Origin, tt.msgBody)
 			assertions.EqualValues(tt.expectedBody.Destination, actual.Destination, tt.msgBody)
 			assertions.EqualValues(tt.expectedBody.Minutes, actual.Minutes, tt.msgBody)
